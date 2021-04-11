@@ -22,6 +22,9 @@
       <div class="form-group">
         <label>Password confirmation:</label>
         <input type="password" class="form-control" v-model="passwordConfirmation">
+        <small class="text-danger" v-if="password.length && password.length < 6">Your password is too short</small>
+        <small v-else-if="password.length >= 6 && password.length <= 20">You have {{ 20 - password.length }} remaining characters in your password</small>
+        <small v-bind:style="`font-size: ${password.length}px`" class="text-danger" v-else-if="password.length > 20">Your password is too long</small>
       </div>
       <input type="submit" class="btn btn-primary" value="Submit">
     </form>
